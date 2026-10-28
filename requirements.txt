@@ -1,0 +1,16 @@
+# Core data handling
+numpy
+pandas
+pyyaml
+requests
+tqdm
+pillow
+
+# Classical ML (baseline, metrics)
+scikit-learn
+
+# Testing
+pytest
+
+# Added in later steps: torch/torchvision (step 3), fastapi/uvicorn (step 4),
+# mlflow, evidently, grad-cam (step 7)

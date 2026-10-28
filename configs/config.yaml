@@ -1,0 +1,15 @@
+# Single source of truth for the pipeline. Every script reads this file,
+# so a reviewer can reproduce results by changing nothing but this config.
+
+seed: 42
+
+paths:
+  raw: data/raw            # downloaded metadata
+  images: data/images      # resized image sample
+  processed: data/processed  # split manifests (train/val/test CSVs)
+  models: models
+  reports: reports
+
+data:
+  image_size: 224          # images are resized at download time to save disk
+  # Sampling and split settings are filled in at step 2

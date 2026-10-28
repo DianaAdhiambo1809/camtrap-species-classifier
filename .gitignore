@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# Data is downloaded by the pipeline, never committed
+data/*
+!data/.gitkeep
+
+# Large model weights (small final artifacts are whitelisted explicitly when ready)
+models/*
+!models/.gitkeep
+
+# Experiment tracking
+mlruns/
+mlartifacts/
+
+# Editors / OS
+.vscode/
+.ipynb_checkpoints/
+Thumbs.db
+.DS_Store
