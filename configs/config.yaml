@@ -12,4 +12,5 @@ paths:
 
 data:
   image_size: 224          # images are resized at download time to save disk
+  seasons: ["S01"]         # which seasons' labels to download; Season 1 is enough to start
   # Sampling and split settings are filled in at step 2

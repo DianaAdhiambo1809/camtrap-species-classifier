@@ -17,8 +17,12 @@ models/*
 mlruns/
 mlartifacts/
 
+# Private progress checklist, not part of the submission
+docs/ROADMAP.md
+
 # Editors / OS
 .vscode/
+.claude/
 .ipynb_checkpoints/
 Thumbs.db
 .DS_Store
