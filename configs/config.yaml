@@ -13,4 +13,13 @@ paths:
 data:
   image_size: 224          # images are resized at download time to save disk
   seasons: ["S01"]         # which seasons' labels to download; Season 1 is enough to start
-  # Sampling and split settings are filled in at step 2
+  valid_dates:             # dates outside these ranges are camera clock errors
+    S1: ["2010-07-01", "2010-11-30"]
+  night_hours: [19, 6]     # night = 19:00 to 05:59 (the Serengeti is close to the equator)
+
+# Which species become classes (rules from the data audit, Step 12)
+classes:
+  min_bursts: 300              # a species needs at least this many bursts,
+  min_regular_cameras: 10      # seen regularly at this many cameras,
+  regular_camera_bursts: 5     # where "regularly" means 5 or more bursts at that camera
+  group_labels: [otherbird, reptiles, rodents, insectspider]   # cover several species, so go to "other"
