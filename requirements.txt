@@ -6,11 +6,15 @@ requests
 tqdm
 pillow
 
-# Classical ML (baseline, metrics)
+# Analysis and plots
+matplotlib
 scikit-learn
+
+# Notebooks
+ipykernel
 
 # Testing
 pytest
 
-# Added in later steps: torch/torchvision (step 3), fastapi/uvicorn (step 4),
-# mlflow, evidently, grad-cam (step 7)
+# Added as the project grows: tensorflow, optuna, mlflow (training);
+# fastapi, uvicorn (API); evidently (monitoring)
