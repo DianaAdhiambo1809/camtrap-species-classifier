@@ -23,3 +23,16 @@ classes:
   min_regular_cameras: 10      # seen regularly at this many cameras,
   regular_camera_bursts: 5     # where "regularly" means 5 or more bursts at that camera
   group_labels: [otherbird, reptiles, rodents, insectspider]   # cover several species, so go to "other"
+
+# Whole cameras go to one split, so test cameras are never seen in training
+split:
+  val_share: 0.15          # share of the animal bursts given to validation cameras
+  test_share: 0.15         # share of the animal bursts given to test cameras
+  min_class_bursts: 20     # every class needs at least this many bursts in validation and in test
+  max_tries: 200           # camera orders to try before giving up
+
+# The photos to download: one photo (the middle one) per burst
+sample:
+  per_class: {train: 450, val: 100, test: 100}   # bursts per class in each split (fewer if not available)
+  per_camera_per_class: 40                       # stops a few busy cameras from dominating
+  image_base_url: "https://storage.googleapis.com/public-datasets-lila/snapshotserengeti-unzipped"
