@@ -36,3 +36,4 @@ sample:
   per_class: {train: 450, val: 100, test: 100}   # bursts per class in each split (fewer if not available)
   per_camera_per_class: 40                       # stops a few busy cameras from dominating
   image_base_url: "https://storage.googleapis.com/public-datasets-lila/snapshotserengeti-unzipped"
+  download_workers: 16     # photos downloaded at the same time
