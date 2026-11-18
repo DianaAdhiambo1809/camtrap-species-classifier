@@ -1,0 +1,12 @@
+# Only what the API needs, so the Docker image stays small
+# (no pandas, scikit-learn or plotting libraries).
+# tensorflow-cpu: the API runs on an ordinary computer without a GPU.
+# Keep its version the same as the one used for training on Colab.
+tensorflow-cpu
+fastapi
+uvicorn
+python-multipart
+numpy
+pillow
+pyyaml
+requests

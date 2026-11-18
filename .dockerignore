@@ -1,0 +1,18 @@
+# Keep the image small: only src/, configs/ and models/ are needed
+data/
+notebooks/
+reports/
+docs/
+tests/
+tools/
+mlruns/
+mlartifacts/
+mlflow.db
+.git/
+.github/
+.vscode/
+.claude/
+**/__pycache__/
+**/*.egg-info/
+.pytest_cache/
+*.ipynb
