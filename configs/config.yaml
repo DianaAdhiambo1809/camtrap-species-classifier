@@ -57,4 +57,8 @@ train:
 evaluation:
   review_cost: 1           # cost of a person checking one photo
   error_cost: 5            # cost of a wrong label entering the database unchecked
-  bootstrap_rounds: 1000   # resamples of the test cameras for the confidence interval   # all runs in one file; view with: mlflow ui --backend-store-uri sqlite:///mlflow.db
+  bootstrap_rounds: 1000   # resamples of the test cameras for the confidence interval
+
+# Grad-CAM and the check of the text strip (brand, date, time) at the bottom of every photo
+gradcam:
+  strip_rows: 15           # height of the strip in a 224 x 224 photo (measured on 60 photos)
