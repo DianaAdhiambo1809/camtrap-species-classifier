@@ -16,6 +16,7 @@ models/*
 # Experiment tracking
 mlruns/
 mlartifacts/
+mlflow.db
 
 # Private progress checklist, not part of the submission
 docs/ROADMAP.md

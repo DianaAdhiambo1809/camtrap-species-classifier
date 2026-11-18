@@ -41,3 +41,14 @@ sample:
 # Logistic regression on pretrained features
 baseline:
   C_values: [0.001, 0.01, 0.1, 1.0]   # regularisation strengths tried (smaller = stronger)
+
+# CNN training with Optuna (run on Colab)
+train:
+  batch_size: 32
+  trial_epochs: 6                         # epochs per Optuna trial (kept short to fit the GPU time)
+  max_epochs: 15                          # final retrain of the best settings; early stopping usually ends it sooner
+  patience: 3                             # early stopping: epochs without improvement before stopping
+  n_trials: {scratch: 10, pretrained: 12}
+  quality_gate_macro_f1: 0.50             # a model below this validation macro-F1 is not used by the API
+  mlflow_experiment: camtrap-cnn
+  mlflow_tracking_uri: "sqlite:///mlflow.db"   # all runs in one file; view with: mlflow ui --backend-store-uri sqlite:///mlflow.db
