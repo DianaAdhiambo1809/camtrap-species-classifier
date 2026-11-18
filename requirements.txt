@@ -18,8 +18,12 @@ fastapi
 uvicorn
 python-multipart   # lets FastAPI receive uploaded files
 
+# Monitoring (drift report)
+evidently==0.7.23
+pydantic>=2.11     # older pydantic versions break Evidently 0.7
+
 # Testing
 pytest
 httpx              # used by FastAPI's test client
 
-# Added as the project grows: tensorflow, optuna, mlflow (training); evidently (monitoring)
+# Training runs on Colab and also needs: tensorflow, optuna, mlflow

@@ -1,0 +1,11 @@
+column,train_mean,test_mean,method,threshold,drift_score,drift_detected
+brightness,134.3199,139.8307,Wasserstein distance (normed),0.1,0.09458612645114352,False
+contrast,55.4572,55.5154,Wasserstein distance (normed),0.1,0.06672008116416733,False
+colour,23.5598,24.4256,Wasserstein distance (normed),0.1,0.06385005615293254,False
+green_share,0.3338,0.3355,Wasserstein distance (normed),0.1,0.22938480060708893,True
+hour,11.9044,12.1862,Wasserstein distance (normed),0.1,0.06200458313341962,False
+pc1,0.0,-0.3819,Wasserstein distance (normed),0.1,0.05515055412137714,False
+pc2,0.0,-1.0082,Wasserstein distance (normed),0.1,0.10949751479772281,True
+pc3,0.0,0.1348,Wasserstein distance (normed),0.1,0.06063067717863401,False
+pc4,0.0,0.0327,Wasserstein distance (normed),0.1,0.13607404206768264,True
+pc5,0.0,-0.8767,Wasserstein distance (normed),0.1,0.1404089795204208,True
