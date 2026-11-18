@@ -1,0 +1,29 @@
+{
+  "model": "pretrained",
+  "params": {
+    "learning_rate": 0.00012464192910624153,
+    "unfreeze_layers": 20,
+    "dropout": 0.20143615251312555,
+    "augment": false
+  },
+  "val_macro_f1": 0.586,
+  "passed_quality_gate": true,
+  "epochs_trained": 7,
+  "class_names": [
+    "buffalo",
+    "elephant",
+    "empty",
+    "gazellegrants",
+    "gazellethomsons",
+    "giraffe",
+    "guineafowl",
+    "hartebeest",
+    "hyenaspotted",
+    "lion",
+    "other",
+    "reedbuck",
+    "warthog",
+    "zebra"
+  ],
+  "image_size": 224
+}

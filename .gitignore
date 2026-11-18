@@ -9,14 +9,16 @@ __pycache__/
 data/*
 !data/.gitkeep
 
-# Large model weights (small final artifacts are whitelisted explicitly when ready)
+# Model weights: only the final model (used by the API) and the settings files are committed.
+# scratch.keras failed the quality gate, so it stays out.
 models/*
 !models/.gitkeep
+!models/pretrained.keras
+!models/*.json
 
-# Experiment tracking
+# Experiment tracking: the runs from Colab (mlflow.db, 1 MB) are committed for docker-compose
 mlruns/
 mlartifacts/
-mlflow.db
 
 # Private progress checklist, not part of the submission
 docs/ROADMAP.md

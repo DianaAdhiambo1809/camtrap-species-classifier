@@ -1,0 +1,40 @@
+{
+  "final_model": "pretrained",
+  "test_macro_f1": 0.5984,
+  "test_macro_f1_95ci": [
+    0.5328,
+    0.6327
+  ],
+  "val_minus_test_macro_f1": -0.0124,
+  "day_vs_night": {
+    "day": {
+      "macro_f1": 0.5823,
+      "accuracy": 0.6283,
+      "photos": 998
+    },
+    "night": {
+      "macro_f1": 0.4029,
+      "accuracy": 0.5429,
+      "photos": 280
+    }
+  },
+  "empty_filter": {
+    "animals_kept": 0.9100169779286927,
+    "empty_removed": 0.6,
+    "pr_auc_animal": 0.9930683171143878
+  },
+  "confidence_brier_before_after": [
+    0.159,
+    0.1592
+  ],
+  "review": {
+    "threshold": 0.8651,
+    "share_sent_to_review": 0.6041,
+    "accuracy_of_accepted": 0.919,
+    "cost_per_100_photos": {
+      "model_with_review": 76.4,
+      "review_everything": 100.0,
+      "accept_everything": 195.2
+    }
+  }
+}
