@@ -1,0 +1,16 @@
+{
+  "strip_rows": 15,
+  "A_gradcam_share_on_strip": {
+    "expected_if_spread_evenly": 0.067,
+    "all_photos": 0.0207,
+    "correct_photos": 0.0165,
+    "wrong_photos": 0.0272
+  },
+  "B_strip_painted_grey": {
+    "macro_f1_original": 0.5984,
+    "macro_f1_blanked": 0.6024,
+    "accuracy_original": 0.6095,
+    "accuracy_blanked": 0.6103,
+    "share_of_answers_changed": 0.1612
+  }
+}

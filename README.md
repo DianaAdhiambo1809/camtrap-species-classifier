@@ -103,6 +103,11 @@ Main findings on the test cameras (final model):
   of photos; the 40% accepted automatically are 92% correct. The cost per 100 photos is 76,
   against 100 for checking everything and 195 for accepting everything unchecked
   (a wrong label costs 5 times a review).
+- **The date strip is not a shortcut:** Grad-CAM puts 2% of its heat on the text strip at the
+  bottom of each photo (6.7% if spread evenly), and painting the strip grey leaves macro-F1
+  unchanged (0.598 to 0.602). On correct answers the heat sits on the animal; the confident
+  mistakes are animals too close to the lens, small distant animals called "empty", and frames
+  with several animals.
 - **Drift between training and test cameras** (Evidently): small. Brightness, contrast,
   colour and time of day are stable; the share of green (vegetation) differs most.
 
