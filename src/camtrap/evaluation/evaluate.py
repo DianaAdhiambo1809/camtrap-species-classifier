@@ -199,16 +199,19 @@ def main():
                                "calibrated": iso.y_thresholds_.tolist()}}
     (Path(config["paths"]["models"]) / "serving.json").write_text(json.dumps(serving, indent=2))
 
-    per_100 = lambda cost: round(100 * cost / len(test), 1)
+    def per_100(cost):
+        return round(100 * cost / len(test), 1)
+
     low, high = bootstrap_macro_f1(test, ev["bootstrap_rounds"], config["seed"])
     known_time = test[test["time_of_day"] != "unknown"]
+    val_f1 = f1_score(val["true"], val["pred"], average="macro")
+    test_f1 = f1_score(test["true"], test["pred"], average="macro")
 
     details = {
         "final_model": best,
-        "test_macro_f1": round(f1_score(test["true"], test["pred"], average="macro"), 4),
+        "test_macro_f1": round(test_f1, 4),
         "test_macro_f1_95ci": [round(low, 4), round(high, 4)],
-        "val_minus_test_macro_f1": round(
-            f1_score(val["true"], val["pred"], average="macro") - f1_score(test["true"], test["pred"], average="macro"), 4),
+        "val_minus_test_macro_f1": round(val_f1 - test_f1, 4),
         "day_vs_night": {period: {"macro_f1": round(f1_score(g["true"], g["pred"], average="macro"), 4),
                                   "accuracy": round(accuracy_score(g["true"], g["pred"]), 4),
                                   "photos": len(g)}

@@ -66,7 +66,8 @@ def main():
 
     # Step 3: Skip the photos we already have
     todo = sample[~sample["image_path"].apply(lambda p: p.exists())]
-    print(f"{len(sample):,} photos in the sample: {len(sample) - len(todo):,} already on disk, {len(todo):,} to download")
+    print(f"{len(sample):,} photos in the sample: {len(sample) - len(todo):,} already on disk, "
+          f"{len(todo):,} to download")
 
     # Step 4: Download several photos at the same time (most of the time is spent waiting on the network)
     with ThreadPoolExecutor(max_workers=config["sample"]["download_workers"]) as pool:

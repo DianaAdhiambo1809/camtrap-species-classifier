@@ -1,0 +1,51 @@
+# Runs on GitHub's computers after every push:
+#   1. tests:  lint the code with ruff, then run the pytest tests
+#   2. docker: build the API image, start it and check that /health answers
+# Results: the "Actions" tab of the repository.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install packages
+        run: |
+          pip install -r requirements.txt ruff
+          pip install -e . --no-deps
+
+      - name: Lint
+        run: ruff check src tests
+
+      - name: Tests
+        run: pytest -v
+
+  docker:
+    needs: tests          # only build the image if the tests pass
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the API image
+        run: docker build -t camtrap-api .
+
+      - name: Start the API and call /health
+        run: |
+          docker run -d --name api -p 8000:8000 camtrap-api
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8000/health; then echo; echo "API is up"; exit 0; fi
+            sleep 2
+          done
+          echo "API did not start"; docker logs api; exit 1
