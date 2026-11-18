@@ -17,6 +17,7 @@
 #         data/processed/features.npz for parts 2 and 3
 # Output: reports/results/baselines.csv
 #         reports/figures/baseline_confusion_matrix.png
+#         reports/results/predictions_logreg.csv (val and test, for evaluate.py)
 # =====================================================================
 
 from pathlib import Path
@@ -63,11 +64,12 @@ def load_features(processed):
     sample = pd.read_csv(processed / "sample.csv")
     camera_of = dict(zip(sample["photo"].apply(lambda p: Path(p).stem + ".jpg"), sample["location"]))
 
-    data = {}
+    data, files = {}, {}
     for split in ["train", "val", "test"]:
-        cameras = np.array([camera_of[name] for name in f[f"files_{split}"]])
+        files[split] = f[f"files_{split}"]
+        cameras = np.array([camera_of[name] for name in files[split]])
         data[split] = (f[f"X_{split}"], f[f"y_{split}"], cameras)
-    return data, list(f["class_names"])
+    return data, files, list(f["class_names"])
 
 
 # Part 2: Logistic regression, with C chosen by camera-grouped cross-validation
@@ -88,7 +90,22 @@ def logistic_baseline(data, class_names, C_values):
     pred = model.predict(X_val)
     print("\nValidation sample:")
     print(classification_report(y_val, pred, target_names=class_names, digits=3))
-    return pred, best_C
+    return model, pred, best_C
+
+
+# Save validation and test predictions in the same format as predict.py, for evaluate.py
+def save_predictions(model, data, files, class_names, path):
+    parts = []
+    for split in ["val", "test"]:
+        X, y, _ = data[split]
+        probs = model.predict_proba(X)
+        part = pd.DataFrame(probs, columns=[f"prob_{c}" for c in class_names])
+        part.insert(0, "file", files[split])
+        part.insert(1, "split", split)
+        part.insert(2, "true", [class_names[i] for i in y])
+        part.insert(3, "pred", [class_names[i] for i in probs.argmax(axis=1)])
+        parts.append(part)
+    pd.concat(parts).to_csv(path, index=False)
 
 
 # Part 3: The same model, scored with a random split and with a camera split
@@ -125,9 +142,10 @@ def main():
                             "val sample", seed)
 
     if (processed / "features.npz").exists():
-        data, class_names = load_features(processed)
-        pred, best_C = logistic_baseline(data, class_names, config["baseline"]["C_values"])
+        data, files, class_names = load_features(processed)
+        model, pred, best_C = logistic_baseline(data, class_names, config["baseline"]["C_values"])
         rows.append(score("logistic regression", "val sample", data["val"][1], pred))
+        save_predictions(model, data, files, class_names, reports / "results" / "predictions_logreg.csv")
         rows += random_vs_camera_split(data, best_C, seed)
 
         ConfusionMatrixDisplay.from_predictions(data["val"][1], pred, display_labels=class_names,

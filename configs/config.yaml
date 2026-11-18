@@ -51,4 +51,10 @@ train:
   n_trials: {scratch: 10, pretrained: 12}
   quality_gate_macro_f1: 0.50             # a model below this validation macro-F1 is not used by the API
   mlflow_experiment: camtrap-cnn
-  mlflow_tracking_uri: "sqlite:///mlflow.db"   # all runs in one file; view with: mlflow ui --backend-store-uri sqlite:///mlflow.db
+  mlflow_tracking_uri: "sqlite:///mlflow.db"
+
+# Evaluation on the test cameras
+evaluation:
+  review_cost: 1           # cost of a person checking one photo
+  error_cost: 5            # cost of a wrong label entering the database unchecked
+  bootstrap_rounds: 1000   # resamples of the test cameras for the confidence interval   # all runs in one file; view with: mlflow ui --backend-store-uri sqlite:///mlflow.db
