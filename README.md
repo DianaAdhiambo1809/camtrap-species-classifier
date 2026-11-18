@@ -123,7 +123,17 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-### 2. Run the steps
+### 2. Run the pipeline
+
+One command runs every step below in order:
+
+```powershell
+python -m camtrap.pipeline           # runs the steps whose output is missing
+python -m camtrap.pipeline --force   # runs every step again
+```
+
+Steps whose output already exists are skipped, so the pipeline can be stopped and restarted.
+Steps that need TensorFlow are skipped with a message if it is not installed.
 
 Every setting lives in [`configs/config.yaml`](configs/config.yaml). Run the steps in order
 from the project folder. Steps 4 to 7 need a GPU and were run on Google Colab with
