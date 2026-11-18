@@ -13,8 +13,13 @@ scikit-learn
 # Notebooks
 ipykernel
 
+# API
+fastapi
+uvicorn
+python-multipart   # lets FastAPI receive uploaded files
+
 # Testing
 pytest
+httpx              # used by FastAPI's test client
 
-# Added as the project grows: tensorflow, optuna, mlflow (training);
-# fastapi, uvicorn (API); evidently (monitoring)
+# Added as the project grows: tensorflow, optuna, mlflow (training); evidently (monitoring)

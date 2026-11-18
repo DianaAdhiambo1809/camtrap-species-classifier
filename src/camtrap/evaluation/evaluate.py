@@ -19,6 +19,7 @@
 # Needs:  reports/results/predictions_*.csv, data/processed/sample.csv
 # Output: reports/results/evaluation_summary.csv, test_report.csv, test_details.json
 #         reports/figures/test_confusion_matrix.png, test_calibration.png, test_review_curve.png
+#         models/serving.json (model, calibration and review threshold for the API)
 # =====================================================================
 
 import json
@@ -191,6 +192,12 @@ def main():
     threshold = choose_threshold(val, ev["review_cost"], ev["error_cost"])
     accepted = test["calibrated"] >= threshold
     plot_review_curve(test, threshold, figures / "test_review_curve.png")
+
+    # Settings the API needs: which model, the calibration and the review threshold
+    serving = {"model": best, "review_threshold": round(threshold, 4),
+               "calibration": {"confidence": iso.X_thresholds_.tolist(),
+                               "calibrated": iso.y_thresholds_.tolist()}}
+    (Path(config["paths"]["models"]) / "serving.json").write_text(json.dumps(serving, indent=2))
 
     per_100 = lambda cost: round(100 * cost / len(test), 1)
     low, high = bootstrap_macro_f1(test, ev["bootstrap_rounds"], config["seed"])
