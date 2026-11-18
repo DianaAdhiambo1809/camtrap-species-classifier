@@ -1,0 +1,8 @@
+model,data,accuracy,macro_f1
+dummy (most_frequent),all val bursts,0.9024527845686806,0.06776611089256715
+dummy (stratified),all val bursts,0.7418531553072025,0.07059735339239949
+dummy (most_frequent),val sample,0.09017132551848513,0.011816140848398913
+dummy (stratified),val sample,0.0757439134355275,0.07301198277399035
+logistic regression,val sample,0.5689810640216412,0.5601636991243565
+logistic regression,"train CV, random split",0.7232889863366656,0.7188686753015563
+logistic regression,"train CV, camera split",0.6064050751297583,0.5822709655712676
