@@ -12,6 +12,9 @@ it would be used in practice.
 **Author:** Diana Adhiambo Owuoth (093481)
 **Data:** [Snapshot Serengeti](https://lila.science/datasets/snapshot-serengeti), Season 1, via LILA BC (CDLA-Permissive-1.0)
 
+**Final report:** [reports/Capstone Project - Documentation Summary.pdf](reports/Capstone%20Project%20-%20Documentation%20Summary.pdf)
+**Slides:** [reports/Camp-Strap Power-point Presentation.pptx](reports/Camp-Strap%20Power-point%20Presentation.pptx)
+
 ## Contents
 
 1. [The data at a glance](#the-data-at-a-glance-season-1)
