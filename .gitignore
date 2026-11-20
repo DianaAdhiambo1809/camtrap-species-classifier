@@ -32,3 +32,7 @@ docs/slide_brief_figures/
 .ipynb_checkpoints/
 Thumbs.db
 .DS_Store
+
+# Report source (only the PDF is submitted)
+reports/final_report.tex
+reports/figures/strathmore_logo.png
