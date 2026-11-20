@@ -22,6 +22,9 @@ mlartifacts/
 
 # Private progress checklist, not part of the submission
 docs/ROADMAP.md
+docs/SLIDES_GUIDE.md
+docs/SLIDE_BRIEF.pdf
+docs/slide_brief_figures/
 
 # Editors / OS
 .vscode/
